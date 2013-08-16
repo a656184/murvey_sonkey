@@ -20,6 +20,14 @@
   <title></title>
 </head>
 <body>
+  <div class= "navbar">
+    <a class="navbar-brand" href="/">Murvey Sonkey</a>
+    <% if current_user %>
+      <p class="navbar-text pull-right"><a href="/logout">Log Out</a></p>
+    <% else %>
+      <p class="navbar-text pull-right"><a href="/login">Log In</a></p>
+    <% end %>
+  </div>
   <%= yield %>
 </body>
 </html>
