@@ -1,5 +1,11 @@
+get '/' do
+  erb :index
+end
+
 get '/user' do
-  # Look in app/views/index.erb
+  @taken_surveys = current_user.survey_takers
+  @created_surveys = current_user.surveys
+  @all_surveys = Survey.all
   erb :profile
 end
 
@@ -40,6 +46,5 @@ post '/survey/:id' do
   @survey_taker = SurveyTaker.create(survey_id: params[:id], user_id: session[:user_id])
   @vote = Vote.create(user_id: session[:user_id], choice_id: params[:choice_id], question_id: params[:question_id], survey_taker_id: @survey_taker.id)
   # submit info for survey taken
-
   redirect '/user'
 end
