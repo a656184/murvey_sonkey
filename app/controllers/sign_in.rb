@@ -1,5 +1,5 @@
 get '/login' do
-  erb :login_form
+  erb :login
 end
 
 post '/login' do
