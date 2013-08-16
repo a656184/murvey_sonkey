@@ -43,6 +43,7 @@ get '/survey/:id' do
 end
 
 post '/survey/:id' do
+  p params
   @survey_taker = SurveyTaker.create(survey_id: params[:id], user_id: session[:user_id])
   @vote = Vote.create(user_id: session[:user_id], choice_id: params[:choice_id], question_id: params[:question_id], survey_taker_id: @survey_taker.id)
   # submit info for survey taken
