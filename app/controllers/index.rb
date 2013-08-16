@@ -11,6 +11,9 @@ get '/survey/new'do
 end
 
 post '/survey' do
+  p params
+  @survey = Survey.new(title: params[:title], user_id:session[:user_id])
+  #need survey title and user id in params to create survey
   # submit info for new survey
   redirect '/user/:user_id'
 end
