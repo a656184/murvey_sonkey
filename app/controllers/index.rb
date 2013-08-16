@@ -1,5 +1,11 @@
-get '/user/:user_id' do
-  # Look in app/views/index.erb
+get '/' do
+  erb :index
+end
+
+get '/user' do
+  @taken_surveys = current_user.survey_takers
+  @created_surveys = current_user.surveys
+  @all_surveys = Survey.all
   erb :profile
 end
 
@@ -21,7 +27,7 @@ post '/survey' do
 
   #need survey title and user id in params to create survey
   # submit info for new survey
-  redirect '/user/:user_id'
+  redirect "/user/#{session[:user_id]}"
 end
 
 # ------- Taker of Survey ------
@@ -39,5 +45,5 @@ end
 post '/survey/:id' do
   p params
   # submit info for survey taken
-  redirect '/user/:user_id'
+  redirect "/user/#{session[:user_id]}"
 end
