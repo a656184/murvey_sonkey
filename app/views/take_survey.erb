@@ -1,16 +1,14 @@
 <div class="container">
-  <h1>Take Survey</h1>
-
-
-
-
-
-
-  <form method='post' action='/survey'>
-  Survey Title: <Input type='text' name='title'><br>
-
-  <button>Take Survey</button>
+  <h1>Survey: <%=@survey.title%></h1>
+  <form method='post' action='/survey/<%= @survey.id %>'>
+  <ul>
+  <%@question.each do |question|%>
+    <li><%= question.prompt %>
+      <br> 
+      <input class="choices" type="radio" name="choice1" value=<%= @choice[0].option %>> <%= @choice[0].option %><br></li>
+    <%end%> 
+  </ul>
+  
+  <button>Submit Answers</button>
 </form>
-
 </div>
-
