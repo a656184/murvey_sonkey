@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include BCrypt
 
+  has_many :votes
   has_many :survey_takers
   has_many :surveys # through: :survey_users
   # Remember to create a migration!
