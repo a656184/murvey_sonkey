@@ -5,7 +5,8 @@
   <%@question.each do |question|%>
     <li><%= question.prompt %>
       <br> 
-      <input class="choices" type="radio" name="choice1" value=<%= @choice[0].option %>> <%= @choice[0].option %><br></li>
+      <input class="choices" type="radio" name="choice_id" value=<%= @choice[0].id %>> <%= @choice[0].option %>
+      <input type="hidden" name="question_id" value=<%=question.id%>><br></li>
     <%end%> 
   </ul>
   
