@@ -5,13 +5,30 @@
   <%@question.each do |question|%>
     <li><%= question.prompt %>
       <br> 
-      <% @choice.each do |choice| %>
+<!--       <% @choice.each do |choice| %>
+
       <input class="choices" type="radio" name="choice_id " value=<%= choice.id %>> <%= choice.option %>
       <input type="hidden" name="question_id" value=<%=question.id%>><br></li>
+      <%end%> -->
+
+
+  <!-- This test code to iterate over multiple question with multiple choices needs to be refactored-->
+    <%@choice = Choice.where(question_id: question.id)%>
+      <% @choice.each do |choice| %>
+        <input class="choices" type="radio" name="choice_id " value=<%= choice.id %>> <%= choice.option %>
+        <input type="hidden" name="question_id" value=<%=question.id%>><br></li>
       <%end%>
+
+
+
+
+
     <%end%> 
   </ul>
   
   <button>Submit Answers</button>
 </form>
 </div>
+
+
+
