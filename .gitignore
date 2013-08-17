@@ -25,3 +25,5 @@ chromedriver.log
 bin/
 .env
 *.swp
+database.rb
+Gemfile.lock

@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
+
   $("#add_question").on('click', function(e){
     e.preventDefault();
-      // console.log(this.method);
-      // console.log(this.action);
     $.ajax ({
       type: 'post',
       url: '/survey'
@@ -57,9 +56,6 @@ $(document).ready(function() {
 
     });
 
-
-
-  
   // This is called after the document has loaded in its entirety
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them
