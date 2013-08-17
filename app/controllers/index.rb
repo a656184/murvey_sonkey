@@ -22,7 +22,7 @@ post '/survey' do
   @survey = Survey.create(title: params[:title], user_id: session[:user_id] )
   @question = Question.create(survey_id: @survey.id, prompt: params[:prompt])
   Choice.create(question_id: @question.id, option: params[:choice])
-  redirect '/user'
+  erb :_survey_components, :layout => false
 end
 
 # ------- Taker of Survey ------
