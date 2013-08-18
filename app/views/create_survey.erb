@@ -1,17 +1,14 @@
 <div class="container">
-  <h1>Create Survey</h1>
+  <h1><%= @survey.title %></h1>
 
   <form method='post' action='/survey'>
-  Survey Title: <Input type='text' name='title'><br>
-  <div class="dynamic_form">
-    
-  </div>
-  <br>   
-  <button id="add_question">Add Question</button>
-  <br>
-
-
-  <button>Create Survey</button>
+    <div class="dynamic_form">
+      
+    </div>
+    <br>   
+    <button id="add_question">Add Question</button>
+    <br>
+    <button>Create Survey</button>
 </form>
 
 

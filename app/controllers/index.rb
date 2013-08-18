@@ -12,16 +12,27 @@ end
 # ------- Creator of Survey ------
 
 get '/survey/new'do
+  @survey = Survey.create(title: params[:title], user_id: session[:user_id] )
+  session[:survey_object] = @survey
   # display new survey form
   erb :create_survey
 end
 
 #submit info for new survey
 post '/survey' do
-
-  @survey = Survey.create(title: params[:title], user_id: session[:user_id] )
+  @survey = session[:survey_object]
+  p params
+  @choices =[]
+  @choices.push (params[:choice1])
+  @choices.push (params[:choice2])
+  @choices.push (params[:choice3])
+  @choices.push (params[:choice4])
   @question = Question.create(survey_id: @survey.id, prompt: params[:prompt])
-  Choice.create(question_id: @question.id, option: params[:choice])
+
+  @choices.each do |choice|
+    Choice.create(question_id: @question.id, option: choice)
+  end
+
   erb :_survey_components, :layout => false
 end
 
@@ -38,8 +49,7 @@ end
 
 #submit info for survey taken
 post '/survey/:id' do
-
-  @survey_taker = SurveyTaker.create(survey_id: params[:id], user_id: session[:user_id])
-  @vote = Vote.create(user_id: session[:user_id], choice_id: params[:choice_id], question_id: params[:question_id], survey_taker_id: @survey_taker.id)
+  p params
+  @vote = Vote.create(user_id: session[:user_id], survey_id: params[:survey_id], question_id: params[:question_id], choice_id: params[:choice_id])
   redirect '/user'
 end
