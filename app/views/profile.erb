@@ -15,7 +15,10 @@
           <li><%= survey.title %></li>
         <% end %>
       </ul>
-      <a href="/survey/new">Create a Survey</a>
+      <form method='get' action="/survey/new">
+        <button>Create a New Survey</button>
+        <input type='text' name='title' placeholder='Title'>
+      </form>
     </div>
 
     <div class="col-lg-4">
