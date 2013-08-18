@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
   has_many :survey_takers
   has_many :surveys # through: :survey_users
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :email, presence: true,
       format: { with: /(.{1,})(\@)(\w{1,})(\.)(\w{2,})/}
+  validates :password, presence: true
 
 
   def self.authenticate(name, password)

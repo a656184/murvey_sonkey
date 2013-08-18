@@ -8,7 +8,7 @@ $(document).ready(function() {
       url: '/survey'
     }).done(function(response) {
       $(".dynamic_form").html(response)
-    })  
+    })
   })
 
 
@@ -46,11 +46,12 @@ $(document).ready(function() {
     var multSelectedValue = parseInt($(this).val());
 
     var choices = ''
-      
-      for (var i=1; i < multSelectedValue + 1; i++)
-        {
-          choices = choices + ("<br>Choice " + i + ": <input type='text' name='choice" + i + "'><br>");
-        }
+
+      for (var i=1; i < multSelectedValue + 1; i++) {
+        choices += ("<br>Choice " + i +
+            ": <input type='text' name='choice" +
+             i + "'><br>");
+      }
 
     $("#option_field").html(choices);
 
