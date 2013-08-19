@@ -1,4 +1,6 @@
 class Vote < ActiveRecord::Base
+ #CODE REVIEW: What is the purpose of user here? Isn't a vote given by a survey taker? 
+
   belongs_to :user
   belongs_to :choice
   belongs_to :question

@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   $("#add_question").on('click', function(e){
     e.preventDefault();
-
+// Use form.serialize() also, use nested params to be able to have > 1 choice without naming each one. 
     var data = {prompt: $('textarea[name="prompt"]').val(), choice1: $('input[name="choice1"]').val(), choice2: $('input[name="choice2"]').val(), choice3: $('input[name="choice3"]').val(), choice4: $('input[name="choice4"]').val()};
     
     $.ajax ({
@@ -33,6 +33,7 @@ $(document).ready(function() {
 
   $(document).on("change", ".drop_down", function(){
     var selectedValue = parseInt($(this).val());
+// CODE REVIEW: How can you use an Object to avoid the case statement here?  This is code that looks fragile - what happens when you add 3,4 ,5 selections ? This is a great opportunity for OO Design. See (http://sandimetz.com/2009/06/ruby-case-statements-and-kindof.html) for some thoughts.
 
       switch(selectedValue){
         case 1:
@@ -52,6 +53,8 @@ $(document).ready(function() {
     $(".mult_choice").remove();
     $("#option_amount").html("<textarea id='free_response' name='prompt' placeholder='Input Choice'/></textarea>");
   }
+
+// CODE REVEIW: consider using a template here - also see if you can make the number of choices more flexible
 
   function displayMultipleChoiceSection(){
     $("#free_response").remove();

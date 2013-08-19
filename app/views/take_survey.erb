@@ -5,6 +5,8 @@
     <%@question.each do |question|%>
     <li><%= question.prompt %>
       <br> 
+
+<!-- CODE REVIEW: Don't put AR logic in your view - move this to a helper method or the controller  -->
     <%@choice = Choice.where(question_id: question.id)%>
       <% @choice.each do |choice| %>
         <input class="choices" type="radio" name='[choices]<%=question.id%>' value=<%= choice.id %>> <%= choice.option %>

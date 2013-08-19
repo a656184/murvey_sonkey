@@ -3,6 +3,9 @@ get '/' do
 end
 
 get '/user' do
+
+  #CODE REVIEW: This can be simplified using AR join query and where not.  You should not need the 'each ' or the Survey.all.  You may need to adjust your associations. 
+
   @taken_surveys = []
   @all_votes = Vote.where(user_id: current_user.id)
   @all_votes.each do |t|
@@ -18,7 +21,11 @@ end
 # ------- Creator of Survey ------
 
 get '/survey/new'do
+
+#CODE REVIEW: Use nested params in your form so you don't have to write out the complete hash here.  EX @survey=Survey.create(params[:survey]) if there are params on your form you don't need here, or just: @survey=Survey.create(params) if you are using all of the input from your form.  
   @survey = Survey.create(title: params[:title], user_id: session[:user_id] )
+  
+#CODE REVIEW: Only store the @survey.id in the session, not the whole object. 
   session[:survey_object] = @survey
   # display new survey form
   erb :create_survey
@@ -27,6 +34,9 @@ end
 #submit info for new survey
 post '/survey' do
   @survey = session[:survey_object]
+  
+#CODE REVIEW: This is 'begging' for a helper method. Also, using nested params can avoid the choice1, choice2, ... issue.
+
   @choices =[]
   @choices.push (params[:choice1])
   @choices.push (params[:choice2])
