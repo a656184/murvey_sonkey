@@ -54,7 +54,19 @@ end
 
 #submit info for survey taken
 post '/survey/:id' do
-  p params
-  @vote = Vote.create(user_id: session[:user_id], survey_id: params[:survey_id], question_id: params[:question_id], choice_id: params[:choice_id])
+  p params[:choices]
+ 
+  params[:choices].each do |question_id, choice_id|
+    @vote = Vote.create(user_id: session[:user_id], survey_id: params[:survey_id], question_id: question_id, choice_id: choice_id)
+  end
+
   redirect '/user'
+end
+
+# -------- Results --------------
+
+get '/survey/results/:id' do
+  @survey = Survey.find(params[:id])
+  @questions = Question.where(survey_id: @survey.id)
+  erb :results
 end
