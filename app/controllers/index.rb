@@ -3,9 +3,15 @@ get '/' do
 end
 
 get '/user' do
-  @taken_surveys = current_user.survey_takers
+  @taken_surveys = []
+  @all_votes = Vote.where(user_id: current_user.id)
+  @all_votes.each do |t|
+    @taken_surveys << Survey.find(t.survey_id)
+  end
+  @taken_surveys
   @created_surveys = current_user.surveys
   @all_surveys = Survey.all
+  @untaken_surveys = (@all_surveys - @taken_surveys)
   erb :profile
 end
 
@@ -21,7 +27,6 @@ end
 #submit info for new survey
 post '/survey' do
   @survey = session[:survey_object]
-  p params
   @choices =[]
   @choices.push (params[:choice1])
   @choices.push (params[:choice2])

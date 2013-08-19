@@ -11,15 +11,28 @@ $(document).ready(function() {
       url: '/survey',
       data: data
     }).done(function(response) {
+      console.log(response);
       $(".dynamic_form").html(response)
     })  
-  })
+  });
+
+  $("#finish_survey").on('click', function(e){
+    e.preventDefault();
+
+    var data = {prompt: $('textarea[name="prompt"]').val(), choice1: $('input[name="choice1"]').val(), choice2: $('input[name="choice2"]').val(), choice3: $('input[name="choice3"]').val(), choice4: $('input[name="choice4"]').val()};
+    
+    $.ajax ({
+      type: 'post',
+      url: '/survey',
+      data: data
+    }).done(function(response) {
+      window.location = '/user'
+    })  
+  });
 
 
   $(document).on("change", ".drop_down", function(){
     var selectedValue = parseInt($(this).val());
-    console.log(selectedValue);
-
 
       switch(selectedValue){
         case 1:

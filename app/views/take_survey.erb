@@ -7,8 +7,9 @@
       <br> 
     <%@choice = Choice.where(question_id: question.id)%>
       <% @choice.each do |choice| %>
-        <input class="choices" type="radio" name="question <%= question.id %>" value=<%= choice.option %>> <%= choice.option %>
+        <input class="choices" type="radio" name="choice_id" value=<%= choice.id %>> <%= choice.option %>
         <input type="hidden" name="question_id" value=<%=question.id%>><br></li>
+        <input type="hidden" name="survey_id" value=<%=@survey.id%>><br></li>
         
       <%end%>
     <%end%> 
