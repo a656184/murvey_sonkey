@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Survey: <%=@survey.title%></h1>
+  <h3>Survey: <%=@survey.title%></h3>
   <form method='post' action='/survey/<%= @survey.id %>'>
   <ul>
     <%@question.each do |question|%>
@@ -15,7 +15,7 @@
     <%end%> 
   </ul>
   
-  <button>Submit Answers</button>
+  <button class="btn btn-default">Submit Answers</button>
 </form>
 </div>
 

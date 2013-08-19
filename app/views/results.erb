@@ -1,17 +1,20 @@
-<div class="question">
-  <ul>
-    <% @questions.each do |question| %>
-      <li><%= question.prompt %></li>
-        <ul>
-          <% Choice.where(question_id: question.id).each do |choice|%>
-            <li><%= choice.option %>: 
-              <%= Vote.where(choice_id: choice.id).length %> votes
-                <% if Vote.where(question_id: question.id).length > 0 %>
-                  (<%= (Vote.where(choice_id: choice.id).length / Vote.where(question_id: question.id).length) * 100 %>%)
-                <%end%>   
-          <%end%>  
-            </li>
-        </ul>
-    <% end %>
-  </ul>
+<div class="container">
+  <div class="question">
+    <h3><%= @survey.title %> Results:</h3>
+    <ul>
+      <% @questions.each do |question| %>
+        <li><%= question.prompt %></li>
+          <ul>
+            <% Choice.where(question_id: question.id).each do |choice|%>
+              <li><%= choice.option %>: 
+                <%= Vote.where(choice_id: choice.id).length %> votes
+                  <% if Vote.where(question_id: question.id).length > 0 %>
+                    (<%= (Vote.where(choice_id: choice.id).length / Vote.where(question_id: question.id).length) * 100 %>%)
+                  <%end%>   
+            <%end%>  
+              </li>
+          </ul>
+      <% end %>
+    </ul>
+  </div>
 </div>

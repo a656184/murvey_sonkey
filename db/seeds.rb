@@ -10,6 +10,11 @@ user3 = User.new(name: 'User3', email: 'c@email.com')
 user3.password = 'password'
 user3.save
 
+user3 = User.new(name: 'mark', email: 'mark@email.com')
+user3.password = 'markmark'
+user3.save
+
+
 survey1 = user1.surveys.create(title: 'Survey1')
 survey2 = user1.surveys.create(title: 'Survey2')
 survey3 = user2.surveys.create(title: 'Survey3')
