@@ -246,7 +246,7 @@ hr {
 .container {
   margin-right: auto;
   margin-left: auto;
-  background-color: #e5e5e5;
+  background-color: #D4BFA9;
 
 }
 .container:before,
@@ -2329,7 +2329,7 @@ td.visible-print {
   margin-bottom: 20px;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #eeeeee;
+  background-color: #D4BFA9;
   border-radius: 4px;
 }
 .navbar:before,
