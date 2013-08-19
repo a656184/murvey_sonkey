@@ -4,6 +4,8 @@ helpers do
       return User.find(session[:user_id])
     else
       return nil
-    end    
+    end
   end
 end
+
+

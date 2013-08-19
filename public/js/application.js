@@ -63,11 +63,12 @@ $(document).ready(function() {
     var multSelectedValue = parseInt($(this).val());
 
     var choices = ''
-      
-      for (var i=1; i < multSelectedValue + 1; i++)
-        {
-          choices = choices + ("<br>Choice " + i + ": <input type='text' name='choice" + i + "'><br>");
-        }
+
+      for (var i=1; i < multSelectedValue + 1; i++) {
+        choices += ("<br>Choice " + i +
+            ": <input type='text' name='choice" +
+             i + "'><br>");
+      }
 
     $("#option_field").html(choices);
 
@@ -78,4 +79,6 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+
 });
